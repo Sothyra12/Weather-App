@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Patrick Hand", cursive;
-    font-weight: 400;
+    font-family: "Chewy", system-ui;
+    font-weight: 90;
     font-style: normal;
 }
 
@@ -18,6 +18,7 @@ body {
     background-blend-mode: darken;
     background-size: cover;
     background-position: center;
+    overflow: hidden;
 }
 
 .container {
@@ -56,7 +57,7 @@ body {
     outline: none;
     border-radius: 10px;
     font-size: 22px;
-    font-weight: 500;
+    font-weight: 10;
     color: white;
     text-transform: uppercase;
     padding: 0 48px 0 42px;
@@ -111,6 +112,17 @@ body {
     transition-delay: .6s;
 }
 
+.weather-box .box .info-weather {
+    transform: translateY(-120%);
+}
+
+.container.active .weather-box .box .info-weather,
+.container.active .weather-details .humidity .info-humidity,
+.container.active .weather-details .wind .info-wind {
+    transform: translateY(0%);
+    transition: transform 1s ease;
+}
+
 .weather-box img {
     width: 60%;
 }
@@ -159,6 +171,12 @@ body {
     transition-delay: 1.2s;
 }
 
+.weather-details .humidity .info-humidity,
+.weather-details .wind .info-wind {
+    transform: translateY(-100%);
+    overflow: hidden;
+}
+
 .weather-details .humidity {
     padding-left: 20px;
     justify-content: flex-start;
@@ -202,4 +220,41 @@ body {
     font-size: 22px;
     font-weight: 500;
     margin-top: 12px;
+}
+
+.city-hide {
+    display: none;
+}
+
+#clone-info-weather,
+#clone-info-humidity,
+#clone-info-wind {
+    position: absolute;
+    transform: translateY(-100%);
+}
+
+#clone-info-weather .weather {
+    transform: translateY(120%);
+    transition: transform 1s ease, opacity 0s;
+    transition-delay: 0s, 2s;
+}
+
+.weather-box:not(.active) #clone-info-weather .weather {
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.active-clone#clone-info-weather .weather {
+    transform: translateY(0%);
+}
+
+#clone-info-humidity span,
+#clone-info-wind span {
+    transform: translateY(100%);
+    transition: transform 1s ease;
+}
+
+.active-clone#clone-info-humidity span,
+.active-clone#clone-info-wind span {
+    transform: translateY(0%);
 }
